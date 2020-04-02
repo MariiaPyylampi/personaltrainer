@@ -159,7 +159,7 @@ export default function PersistentDrawerLeft() {
                 </div>
                 <List>
                   {['Customers', 'Trainings', 'Calendar'].map((text, index) => (
-                    <Link style={{ color: 'inherit', textDecoration: 'inherit'}} to={link(index)}>
+                    <Link onClick={handleDrawerClose} style={{ color: 'inherit', textDecoration: 'inherit'}} to={link(index)}>
                     {
                         <ListItem button key={text}>
                         <ListItemIcon>{icons(index)}</ListItemIcon>

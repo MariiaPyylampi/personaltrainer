@@ -14,6 +14,12 @@ export default function Trainingslist() {
         .catch(err => console.error(err))
     }
 
+    const deleteTraining = (rowData) => {
+        fetch('https://customerrest.herokuapp.com/api/trainings/' + rowData.id, {method: 'DELETE'})
+        .then(res => fetchData())
+        .catch(err => console.error(err))
+    }
+
     return (
         <div>
            <div style={{ maxWidth: '100%' }}>
@@ -26,6 +32,21 @@ export default function Trainingslist() {
                 ]}
                 data={ trainings }
                 title="Trainings"
+                editable={{
+                    onRowDelete: oldData =>
+                    new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                           deleteTraining(oldData)
+                            resolve();
+                        }, 1000);
+                    }),
+                }}
+                options={{
+                    headerStyle: {
+                      backgroundColor: '#ccc',
+                      color: 'black'
+                    }
+                }}
                 />
             </div>
         </div>
